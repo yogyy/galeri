@@ -2,6 +2,7 @@ import {
   pgTableCreator,
   serial,
   smallint,
+  text,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core"
@@ -21,3 +22,24 @@ export const photo = pgTable("photo", {
 
 export type Photo = typeof photo.$inferSelect
 export type NewPhoto = typeof photo.$inferInsert
+
+export const user = pgTable("user", {
+  id: text("id").primaryKey().notNull(),
+  username: text("username").unique().notNull(),
+  password: text("password").notNull(),
+})
+
+export type User = typeof user.$inferInsert
+
+export const session = pgTable("session", {
+  id: text("id").primaryKey().notNull(),
+  expiresAt: timestamp("expires_at", {
+    withTimezone: true,
+    mode: "date",
+  }).notNull(),
+  userId: text("user_id")
+    .references(() => user.id)
+    .notNull(),
+})
+
+export type Session = typeof user.$inferInsert
