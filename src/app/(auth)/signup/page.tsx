@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation"
 
-import { validateRequest } from "@/lib/auth"
+import { register } from "@/lib/authentication"
+import { validateRequest } from "@/lib/lucia-auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { register } from "@/app/_lib/authentication"
 
 export default async function Page() {
   const { user } = await validateRequest()

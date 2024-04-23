@@ -8,7 +8,7 @@ import { eq } from "drizzle-orm"
 import { generateId } from "lucia"
 import { Argon2id } from "oslo/password"
 
-import { lucia, validateRequest } from "@/lib/auth"
+import { lucia, validateRequest } from "@/lib/lucia-auth"
 
 export async function login(formData: FormData): Promise<ActionResult> {
   const username = formData.get("username")
