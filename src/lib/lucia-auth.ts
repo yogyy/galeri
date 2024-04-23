@@ -1,6 +1,6 @@
 import { cache } from "react"
 import { cookies } from "next/headers"
-import { db, pool } from "@/db"
+import { db } from "@/db"
 import { session, user, type User as DatabaseUser } from "@/db/schema"
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle"
 import { Lucia, Session, User } from "lucia"
