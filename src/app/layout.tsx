@@ -8,7 +8,6 @@ import localFont from "next/font/local"
 import { Toaster } from "sonner"
 
 import { Background } from "./_components/background"
-import { Navbar } from "./_components/navbar"
 
 const sans = HankenGrotesk({ subsets: ["latin"], variable: "--sans" })
 const mono = localFont({
@@ -62,7 +61,6 @@ export default function RootLayout({
           "bg-[#334155] font-sans text-text-primary"
         )}
       >
-        <Navbar />
         <Background />
         {children}
         <Toaster />
