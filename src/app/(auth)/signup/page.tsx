@@ -9,9 +9,7 @@ import { Label } from "@/components/ui/label"
 export default async function Page() {
   const { user } = await validateRequest()
 
-  if (!user) {
-    redirect("/gallery")
-  }
+  if (!user) redirect("/")
 
   return (
     <>

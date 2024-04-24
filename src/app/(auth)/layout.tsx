@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           alt="image background"
           width={512}
           height={512}
-          className="rounded"
+          className="rotate-2 scale-75 rounded xl:scale-90"
         />
       </div>
       <div className="relative h-dvh w-auto flex-1 items-end bg-black/50 backdrop-blur">
