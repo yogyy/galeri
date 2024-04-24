@@ -113,6 +113,7 @@ export async function register(formData: FormData): Promise<ActionResult> {
       id: userId,
       username: username,
       password: hashedPassword,
+      role: "user",
     })
     .returning()
 
@@ -146,5 +147,5 @@ export async function logout(): Promise<ActionResult> {
     sessionCookie.value,
     sessionCookie.attributes
   )
-  return redirect("/gallery")
+  return redirect("/")
 }

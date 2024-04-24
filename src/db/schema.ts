@@ -1,4 +1,5 @@
 import {
+  pgEnum,
   pgTableCreator,
   serial,
   smallint,
@@ -23,10 +24,13 @@ export const photo = pgTable("photo", {
 export type Photo = typeof photo.$inferSelect
 export type NewPhoto = typeof photo.$inferInsert
 
+export const userRole = pgEnum("role", ["user", "admin"])
+
 export const user = pgTable("user", {
   id: text("id").primaryKey().notNull(),
   username: text("username").unique().notNull(),
   password: text("password").notNull(),
+  role: userRole("role").notNull(),
 })
 
 export type User = typeof user.$inferInsert
