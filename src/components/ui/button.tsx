@@ -42,12 +42,12 @@ interface ButtonProps
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
-    { variant, className, style, onMouseMove, children, ...rest },
+    { variant, className, size, style, onMouseMove, children, ...rest },
     ref
   ) {
     return (
       <button
-        className={cn(buttonVariants({ variant, className }))}
+        className={cn(buttonVariants({ variant, size, className }))}
         type="button"
         {...rest}
         {...useHoverBackground({ style, onMouseMove })}
