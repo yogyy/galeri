@@ -4,18 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm download-fonts && next build",
+    "build": "sh ./scripts/download-fonts.sh && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "download-fonts": "./scripts/download-fonts.sh",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "typecheck": "tsc --noEmit",
+    "download-fonts": "sh ./scripts/download-fonts.sh",
     "migrate": "drizzle-kit generate:pg",
     "drop": "drizzle-kit drop",
     "db:migrate": "tsx ./src/db/migrate.ts",
     "db:push": "drizzle-kit push:pg",
-    "studio": "drizzle-kit studio",
-    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
+    "studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
