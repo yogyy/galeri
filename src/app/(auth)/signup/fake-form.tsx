@@ -18,7 +18,9 @@ import { Input } from "@/components/ui/input"
 import { Link } from "@/components/ui/link"
 
 const authentication = z.object({
-  username: z.string(),
+  username: z.string().min(4, {
+    message: "username must be at least 4 characters",
+  }),
   password: z.string().min(6, {
     message: "password must be at least 6 characters",
   }),
@@ -53,6 +55,7 @@ export function RegisterForm() {
               <FormControl>
                 <Input placeholder="superman" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
