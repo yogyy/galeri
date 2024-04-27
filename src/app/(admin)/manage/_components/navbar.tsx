@@ -11,9 +11,13 @@ export function Navbar() {
 }
 
 function NavbarLinks() {
-  return ["gallery", "manage"].map((i) => (
-    <li key={i} className="px-2 py-3">
-      <Link href={`/${i}`}>{i.charAt(0).toUpperCase() + i.slice(1)}</Link>
+  const links = ["home", "manage"]
+
+  return links.map((link) => (
+    <li key={link} className="px-2 py-3">
+      <Link href={link === "home" ? "/" : `/${link}`}>
+        {link.charAt(0).toUpperCase() + link.slice(1)}
+      </Link>
     </li>
   ))
 }
