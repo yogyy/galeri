@@ -62,6 +62,7 @@ export function Collage({
 }) {
   const count = useColumnCount()
   const columns = useOrganisedPhotos(photos, count)
+  const priority = photos.slice(0, 4) ? true : false
   return (
     <div
       className={cn(
@@ -72,7 +73,12 @@ export function Collage({
       {columns.map((column, i) => (
         <div key={i} className="flex flex-col divide-y divide-separator">
           {column.map((photo) => (
-            <TweetPhoto key={photo.id} {...photo} allowDelete={allowDelete} />
+            <TweetPhoto
+              key={photo.id}
+              {...photo}
+              priority={priority}
+              allowDelete={allowDelete}
+            />
           ))}
         </div>
       ))}

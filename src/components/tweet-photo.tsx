@@ -9,10 +9,12 @@ import { LazyImage } from "./lazy-image"
 
 interface TweetPhotoProps extends Photo {
   allowDelete?: boolean
+  priority?: boolean
 }
 
 export function TweetPhoto({
   id,
+  priority = false,
   height,
   width,
   authorHandle,
@@ -28,6 +30,7 @@ export function TweetPhoto({
         alt={`Illustration by ${authorName}`}
         width={width}
         height={height}
+        priority={priority}
       />
       <Link
         href={tweetUrl}
