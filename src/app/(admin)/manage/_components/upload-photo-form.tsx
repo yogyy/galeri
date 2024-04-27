@@ -22,7 +22,6 @@ import { uploadPhoto, UploadPhotoSchema } from "@/app/_lib/validation"
 export function UploadPhotoForm() {
   const [isPending, startTransition] = useTransition()
 
-  // 1. Define your form.
   const form = useForm<UploadPhotoSchema>({
     resolver: zodResolver(uploadPhoto),
     defaultValues: {
@@ -35,11 +34,7 @@ export function UploadPhotoForm() {
     },
   })
 
-  // 2. Define a submit handler.
   function onSubmit(values: UploadPhotoSchema) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
     startTransition(() => {
       toast.promise(uploadNewPhoto(values), {
         loading: "uploading photo",
