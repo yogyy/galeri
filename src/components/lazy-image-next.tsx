@@ -6,34 +6,15 @@ import { useInView } from "react-intersection-observer"
 
 import { cn } from "@/lib/utils"
 
-export function LazyImage({
-  src,
-  alt,
-  className,
-  ...props
-}: Omit<ImageProps, "src"> & { src: RequestInfo | URL }) {
-  const { ref, inView } = useInView()
+export function LazyImage({ src, alt, className, ...props }: ImageProps) {
+  const { ref, inView } = useInView({ rootMargin: "-10% 0px" })
   const [dataUrl, setDataUrl] = useState<string | null>(null)
 
   useEffect(() => {
-    // This is *not* run twice in dev+strict mode whenever inView changes. Guess why?
     if (!inView || !src || dataUrl) return
-    const controller = new AbortController()
-    const timeout = setTimeout(
-      () =>
-        fetch(src, { signal: controller.signal })
-          .then((res) => setDataUrl(res.url))
-          .catch((err) =>
-            (err as { name: string }).name === "AbortError"
-              ? null
-              : console.error(err)
-          ),
-      100
-    )
-    return () => {
-      controller.abort()
-      clearTimeout(timeout)
-    }
+    const timeout = setTimeout(() => setDataUrl(src as string), 100)
+
+    return () => clearTimeout(timeout)
   }, [inView, src, dataUrl])
 
   return (
@@ -43,14 +24,14 @@ export function LazyImage({
           dataUrl ||
           `data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${props.width} ${props.height}'%3e%3c/svg%3e`
         }
-        {...props}
-        alt={alt || "images"}
+        alt={alt}
         className={cn(
           "transition duration-600",
           dataUrl ? "opacity-100" : "opacity-0",
           className
         )}
         unoptimized
+        {...props}
       />
     </div>
   )
