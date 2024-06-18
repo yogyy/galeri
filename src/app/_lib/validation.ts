@@ -4,7 +4,7 @@ export const uploadPhoto = z.object({
   storageKey: z.string(),
   width: z.string(),
   height: z.string(),
-  tweetUrl: z.string().startsWith("https://twitter.com/"),
+  tweetUrl: z.string().startsWith("https://x.com/"),
   authorName: z.string(),
   authorHandle: z.string().startsWith("@"),
 })
