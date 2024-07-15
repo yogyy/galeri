@@ -1,16 +1,20 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import type { Photo } from "@/db/schema"
 
 import { Link } from "@/components/ui/link"
 
-import { DeleteButton } from "./delete-button"
 import { LazyImage } from "./lazy-image"
 
 interface TweetPhotoProps extends Photo {
   allowDelete?: boolean
   priority?: boolean
 }
+
+const DeleteButton = dynamic(() =>
+  import("./delete-button").then((mod) => mod.DeleteButton)
+)
 
 export function TweetPhoto({
   id,
