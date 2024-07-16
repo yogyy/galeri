@@ -16,8 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { uploadNewPhoto } from "@/app/_lib/actions"
-import { uploadPhoto, UploadPhotoSchema } from "@/app/_lib/validation"
+
+import { uploadNewPhoto } from "../_lib/actions"
+import { uploadPhoto, UploadPhotoSchema } from "../_lib/validation"
 
 export function UploadPhotoForm() {
   const [isPending, startTransition] = useTransition()
@@ -133,7 +134,7 @@ export function UploadPhotoForm() {
             )}
           />
         </div>
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} variant="ghost">
           Submit
         </Button>
       </form>
