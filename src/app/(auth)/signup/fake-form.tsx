@@ -3,8 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
-import { z } from "zod"
 
+import { register } from "@/lib/authentication"
+import { authentication, AuthSchema } from "@/lib/validation"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -17,17 +18,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Link } from "@/components/ui/link"
 
-const authentication = z.object({
-  username: z.string().min(4, {
-    message: "username must be at least 4 characters",
-  }),
-  password: z.string().min(6, {
-    message: "password must be at least 6 characters",
-  }),
-})
-
 export function RegisterForm() {
-  const form = useForm<z.infer<typeof authentication>>({
+  const form = useForm<AuthSchema>({
     resolver: zodResolver(authentication),
     defaultValues: {
       username: "",
@@ -35,11 +27,13 @@ export function RegisterForm() {
     },
   })
 
-  function onSubmit(v: z.infer<typeof authentication>) {
-    console.log(v)
-    toast.info("register not available", {
-      description: "read full code see implementation",
-      action: <ToTheCode />,
+  function onSubmit({ username, password }: AuthSchema) {
+    register(username, password).then((data) => {
+      if (data === undefined) {
+        toast.success("you can login now")
+      } else {
+        toast.error(data.error)
+      }
     })
   }
 
