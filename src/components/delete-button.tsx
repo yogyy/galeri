@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Trash } from "@/components/icons"
-import { deletePhoto } from "@/app/_lib/actions"
+import { deletePhoto } from "@/app/(admin)/manage/_lib/actions"
 
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "./ui/dialog"
 
@@ -23,13 +23,16 @@ export function DeleteButton({ id }: { id: number }) {
               formAction={action}
               size="sm"
               type="submit"
+              variant="ghost"
               className="text-mint"
             >
               Remove
             </Button>
           </form>
           <DialogClose asChild className="font-bold text-red">
-            <Button size="sm">cancel</Button>
+            <Button size="sm" variant="ghost">
+              cancel
+            </Button>
           </DialogClose>
         </div>
       </DialogContent>
