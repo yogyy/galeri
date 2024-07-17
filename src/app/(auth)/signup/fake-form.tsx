@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
-import { register } from "@/lib/authentication"
 import { authentication, AuthSchema } from "@/lib/validation"
 import { Button } from "@/components/ui/button"
 import {
@@ -28,12 +27,10 @@ export function RegisterForm() {
   })
 
   function onSubmit({ username, password }: AuthSchema) {
-    register(username, password).then((data) => {
-      if (data === undefined) {
-        toast.success("you can login now")
-      } else {
-        toast.error(data.error)
-      }
+    console.log({ username, password })
+    toast.info("register not available", {
+      description: "see implementation",
+      action: <ToTheCode />,
     })
   }
 
@@ -60,7 +57,7 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="kryptonite" {...field} />
+                <Input type="password" placeholder="kryptonite" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -80,7 +77,7 @@ export function RegisterForm() {
 function ToTheCode() {
   return (
     <Link
-      href="https://github.com/yogyy/galeri/commit/e7c870487a150bf512e8da1d8ac1c1d274ff93f2"
+      href="https://github.com/yogyy/galeri/commit/e6bf6f6cbacabd61019bc4e652a2d99940e4e085#r144303397"
       className="ml-auto text-sm"
       style={{
         color: "#000",
