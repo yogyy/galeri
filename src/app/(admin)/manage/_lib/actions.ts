@@ -23,7 +23,7 @@ export const uploadNewPhoto = async (input: UploadPhotoSchema) => {
   }
 }
 
-export const deletePhoto = async (id: number) => {
+export const deletePhoto = async (id: string) => {
   await db.delete(photo).where(eq(photo.id, id)).returning()
 
   revalidateTag("photo")

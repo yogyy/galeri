@@ -24,11 +24,11 @@ import {
 import { Trash } from "@/components/icons"
 import { deletePhoto } from "@/app/(admin)/manage/_lib/actions"
 
-export function DeleteButton({ id }: { id: number }) {
+export function DeleteButton({ id }: { id: string }) {
   const [isPending, startTransition] = useTransition()
 
   const deleteSchema = z.object({
-    id: z.number().min(1),
+    id: z.string(),
   })
 
   const form = useForm<z.infer<typeof deleteSchema>>({
