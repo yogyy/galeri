@@ -1,4 +1,4 @@
-import { RegisterForm } from "./fake-form"
+import { RegisterForm } from "./signup-form"
 
 export default function Page() {
   return (

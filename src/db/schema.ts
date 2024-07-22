@@ -11,7 +11,7 @@ import {
 const pgTable = pgTableCreator((name) => `gallery_${name}`)
 
 export const photo = pgTable("photo", {
-  id: serial("id").primaryKey(),
+  id: varchar("id", { length: 30 }).primaryKey(),
   storageKey: varchar("storage_key", { length: 100 }).unique().notNull(),
   width: smallint("width").notNull(),
   height: smallint("height").notNull(),

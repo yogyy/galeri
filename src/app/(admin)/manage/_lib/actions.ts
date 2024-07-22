@@ -5,14 +5,18 @@ import { db } from "@/db"
 import { photo } from "@/db/schema"
 import { eq } from "drizzle-orm"
 
+import { generateRandId } from "@/lib/utils"
+
 import { UploadPhotoSchema } from "./validation"
 
 export const uploadNewPhoto = async (input: UploadPhotoSchema) => {
+  const photoId = generateRandId("i")
   try {
     await db
       .insert(photo)
       .values({
         ...input,
+        id: photoId,
         width: parseInt(input.width),
         height: parseInt(input.height),
       })
@@ -23,8 +27,8 @@ export const uploadNewPhoto = async (input: UploadPhotoSchema) => {
   }
 }
 
-export const deletePhoto = async (id: number) => {
-  await db.delete(photo).where(eq(photo.id, id)).returning()
+export const deletePhoto = async (id: string) => {
+  await db.delete(photo).where(eq(photo.id, id))
 
   revalidateTag("photo")
 }
